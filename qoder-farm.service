@@ -1,0 +1,19 @@
+[Unit]
+Description=Qoder Autopilot — Account Farm Orchestrator
+After=network-online.target
+
+[Service]
+Type=simple
+Environment=TARGET=100
+Environment=BATCH=3
+Environment=DELAY=45
+Environment=COOLDOWN=600
+Environment=TWOCAPTCHA_KEY=
+Environment=QODER_NINEROUTER_DB=~/.9router/db/data.sqlite
+Environment=QODER_WORKER_URL=https://your-worker.workers.dev
+ExecStart=/opt/qoder-autopilot/.venv/bin/qoder-autopilot farm -n ${TARGET} --batch ${BATCH} --delay ${DELAY} --cooldown ${COOLDOWN} --headless --auto-captcha
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=default.target

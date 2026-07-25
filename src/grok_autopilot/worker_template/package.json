@@ -1,0 +1,21 @@
+{
+  "name": "cf-mail-worker",
+  "version": "1.0.0",
+  "description": "Self-hosted temporary email API on Cloudflare Workers + D1",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "setup": "bash scripts/setup.sh",
+    "db:migrate": "wrangler d1 execute $DB_NAME --remote --file=./schema.sql",
+    "db:migrate:local": "wrangler d1 execute $DB_NAME --local --file=./schema.sql"
+  },
+  "dependencies": {
+    "postal-mime": "^2.7.4"
+  },
+  "devDependencies": {
+    "wrangler": "^4.100.0"
+  },
+  "keywords": ["temp-mail", "cloudflare-worker", "disposable-email", "d1"],
+  "license": "MIT"
+}

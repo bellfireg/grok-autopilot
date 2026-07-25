@@ -1,0 +1,19 @@
+name = "qoder-mail-worker"
+main = "src/index.js"
+compatibility_date = "2024-12-01"
+
+# Your email domain — must match Cloudflare Email Routing config
+[vars]
+DOMAIN = "yourdomain.com"
+
+# D1 Database binding
+# Run: npx wrangler d1 create qoder-mail-db
+# Then paste the database_id below
+[[d1_databases]]
+binding = "DB"
+database_name = "qoder-mail-db"
+database_id = "your-database-id-here"
+
+# Cron trigger: cleanup expired mailboxes (runs every hour)
+[triggers]
+crons = ["0 * * * *"]
